@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Template</string>
+
+    <string name="url">"https://www.template.com/api/"</string>
+    <string name="title_first">first</string>
+    <string name="title_second">second</string>
+    <string name="title_third">third</string>
+</resources>
