@@ -7,13 +7,11 @@ import com.memebattle.template.core.di.sub.auth.module.AuthApiModule
 import com.memebattle.template.core.di.sub.auth.module.AuthSettingsModule
 import com.memebattle.template.core.di.sub.main.MainComponent
 import com.memebattle.template.core.di.core.module.AppModule
-import com.memebattle.template.core.di.core.module.RetrofitModule
 
 class DaggerComponentHelper(url: String) {
 
     private val appComponent = DaggerAppComponent.builder()
             .appModule(AppModule(App.instance))
-            .retrofitModule(RetrofitModule(url))
             .build()
 
     var authComponent: AuthComponent? = null
