@@ -2,16 +2,18 @@ package com.memebattle.template.features.main.notes
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bignerdranch.android.osm.presentation.notes.recycler.NotePagingAdapter
+import com.memebattle.template.features.main.notes.recycler.NotePagingAdapter
 import com.memebattle.template.App
 import com.memebattle.template.R
+import com.memebattle.template.core.domain.model.Note
+import com.memebattle.template.features.main.notes.paging.NoteDiffUtilCallback
 import kotlinx.android.synthetic.main.fragment_notes.*
 
 class NotesFragment : Fragment() {
@@ -24,7 +26,7 @@ class NotesFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.flow_fragment_main, container, false)
-        notes_recycler.layoutManager = LinearLayoutManager(activity)
+        notesRecycler.layoutManager = LinearLayoutManager(activity)
         App.instance.daggerComponentHelper.mainComponent!!.inject(this)
         notesFab.setOnClickListener {
             onFABClick()
@@ -41,7 +43,7 @@ class NotesFragment : Fragment() {
         periodWeek.setOnClickListener {
             onPeriodWeekClick()
         }
-        notes_show_hide_filter.setOnClickListener {
+        showFilterButton.setOnClickListener {
             onShowFilterClick()
         }
         viewModel = ViewModelProviders.of(this).get(NotesViewModel::class.java)
@@ -53,10 +55,10 @@ class NotesFragment : Fragment() {
         //router.pushController(RouterTransaction.with(AddNoteController()))
     }
 
-    override fun setAdapter(pagedList: PagedList<Note>) {
-        val adapter = NotePagingAdapter(NoteDiffUtilCallback(), router)
+    fun setAdapter(pagedList: PagedList<Note>) {
+        val adapter = NotePagingAdapter(NoteDiffUtilCallback())
         adapter.submitList(pagedList)
-        notes_recycler.adapter = adapter
+        notesRecycler.adapter = adapter
     }
 
     private fun updateMoment(moment: Int) {
@@ -101,16 +103,13 @@ class NotesFragment : Fragment() {
         }
     }
 
-    //@OnClick(R.id.notes_period_all)
     fun onPeriodAllClick() {
-        Log.i("code", periodAll.textSize.toString())
         if (periodAll.textSize != 42.0f) {
             currentPeriod = 0
             updateData()
         }
     }
 
-    //@OnClick(R.id.notes_period_year)
     fun onPeriodYearClick() {
         if (periodYear.textSize != 42.0f) {
             currentPeriod = 1
@@ -118,7 +117,6 @@ class NotesFragment : Fragment() {
         }
     }
 
-    //@OnClick(R.id.notes_period_month)
     fun onPeriodMonthClick() {
         if (periodMonth.textSize != 42.0f) {
             currentPeriod = 2
@@ -126,7 +124,6 @@ class NotesFragment : Fragment() {
         }
     }
 
-    //@OnClick(R.id.notes_period_week)
     fun onPeriodWeekClick() {
         if (periodWeek.textSize != 42.0f) {
             currentPeriod = 3
@@ -134,19 +131,16 @@ class NotesFragment : Fragment() {
         }
     }
 
-    //@OnClick(R.id.notes_train_image)
     fun onTrainClick() {
         moment = 1
         updateData()
     }
 
-    //@OnClick(R.id.notes_sleep_image)
     fun onSleepClick() {
         moment = 0
         updateData()
     }
 
-    //@OnClick(R.id.notes_all_image)
     fun onAllClick() {
         moment = 2
         updateData()
@@ -156,20 +150,19 @@ class NotesFragment : Fragment() {
         updateMoment(moment)
         updatePeriod(currentPeriod)
         if (currentPeriod == 4)
-            presenter.setRecyclerData(currentPeriod - 1, moment)
+            viewModel.setRecyclerData(currentPeriod - 1, moment)
         else
-            presenter.setRecyclerData(currentPeriod, moment)
+            viewModel.setRecyclerData(currentPeriod, moment)
     }
 
-    //@OnClick(R.id.notes_show_hide_filter)
     fun onShowFilterClick() {
         if (filter) {
-            notes_filter_layout.visibility = View.GONE
-            notes_show_hide_image.setImageResource(R.drawable.ic_arrow_open_filter)
+            notesFilterLayout.visibility = View.GONE
+            showFilterImage.setImageResource(R.drawable.ic_arrow_open_filter)
         }
         else {
-            notes_filter_layout.visibility = View.VISIBLE
-            notes_show_hide_image.setImageResource(R.drawable.ic_arrow_filter_close)
+            notesFilterLayout.visibility = View.VISIBLE
+            showFilterImage.setImageResource(R.drawable.ic_arrow_filter_close)
         }
 
         filter = !filter

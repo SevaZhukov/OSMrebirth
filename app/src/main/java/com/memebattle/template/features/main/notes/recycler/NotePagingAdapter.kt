@@ -1,17 +1,16 @@
-package com.bignerdranch.android.osm.presentation.notes.recycler
+package com.memebattle.template.features.main.notes.recycler
 
-import android.arch.paging.PagedListAdapter
-import android.support.v7.util.DiffUtil
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.bluelinelabs.conductor.Router
-import com.bluelinelabs.conductor.RouterTransaction
-import com.bignerdranch.android.osm.R
-import com.bignerdranch.android.osm.data.room.Note
-import com.bignerdranch.android.osm.domain.format.FormatNote
-import com.bignerdranch.android.osm.presentation.result_note.ResultNoteController
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
+import com.memebattle.template.R
+import com.memebattle.template.core.domain.model.Note
+import com.memebattle.template.core.domain.util.FormatNote
+import com.memebattle.template.features.main.notes.recycler.NoteViewHolder
+import kotlinx.android.synthetic.main.item_note.view.*
 
-class   NotePagingAdapter(diffCallback: DiffUtil.ItemCallback<Note>, private val router: Router) : PagedListAdapter<Note, NoteViewHolder>(diffCallback) {
+class NotePagingAdapter(diffCallback: DiffUtil.ItemCallback<Note>) : PagedListAdapter<Note, NoteViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false)
@@ -21,13 +20,13 @@ class   NotePagingAdapter(diffCallback: DiffUtil.ItemCallback<Note>, private val
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = getItem(position)
         val formatNote = FormatNote.format(note!!)
-        holder.itemView.setOnClickListener({
-            router.replaceTopController(RouterTransaction.with(ResultNoteController(note)))
-        })
-        holder.points.text = "${note!!.points}"
-        holder.date.text = formatNote.date
-        holder.zone.text = formatNote.zone
-        holder.zone.setTextColor(formatNote.colorZone)
-        holder.moment.setImageResource(formatNote.moment)
+        holder.itemView.setOnClickListener {
+
+        }
+        holder.itemView.points.text = "${note.points}"
+        holder.itemView.date.text = formatNote.date
+        holder.itemView.zone.text = formatNote.zone
+        holder.itemView.zone.setTextColor(formatNote.colorZone)
+        holder.itemView.moment.setImageResource(formatNote.moment)
     }
 }
