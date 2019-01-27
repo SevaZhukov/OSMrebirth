@@ -5,4 +5,7 @@
     <string name="title_first">first</string>
     <string name="title_second">second</string>
     <string name="title_third">third</string>
+    <string name="title_statistic">Статистика</string>
+    <string name="title_notes">Записи</string>
+    <string name="title_settings">Настройки</string>
 </resources>

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/gameFragment"
-        android:icon="@drawable/ic_game"
-        android:title="@string/title_first" />
+        android:id="@+id/navigation_action_statistic"
+        android:icon="@drawable/ic_statistic"
+        android:title="@string/title_statistic" />
     <item
-        android:id="@+id/ratingFragment"
-        android:icon="@drawable/ic_rating"
-        android:title="@string/title_second" />
+        android:id="@+id/navigation_action_notes"
+        android:icon="@drawable/ic_notes"
+        android:title="@string/title_notes" />
     <item
-        android:id="@+id/profileFragment"
-        android:icon="@drawable/ic_profile"
-        android:title="@string/title_third" />
+        android:id="@+id/navigation_action_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/title_settings" />
 </menu>

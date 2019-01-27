@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.memebattle.goldextensions.log
 import com.memebattle.template.App
-import com.memebattle.template.core.domain.BaseCallback
+import com.memebattle.template.core.domain.util.BaseCallback
 import com.memebattle.template.features.auth.core.domain.model.res.UserRes
 import com.memebattle.template.features.auth.core.domain.interactor.AuthApiService
 import com.memebattle.template.features.auth.core.domain.model.req.UserReq
