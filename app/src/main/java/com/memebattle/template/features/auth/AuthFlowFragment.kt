@@ -15,7 +15,7 @@ class AuthFlowFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.flow_fragment_auth, container, false)
-        msFragmentManager.localContainerId = R.id.auth_container_id
+        msFragmentManager.localContainerId = R.id.authContainer
         return v
     }
 

@@ -16,7 +16,7 @@
         app:menu="@menu/menu_main_flow"/>
 
     <FrameLayout
-        android:id="@+id/main_container_id"
+        android:id="@+id/mainContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"

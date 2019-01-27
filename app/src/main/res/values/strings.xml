@@ -1,11 +1,19 @@
 <resources>
     <string name="app_name">Template</string>
 
-    <string name="url">"https://www.template.com/api/"</string>
-    <string name="title_first">first</string>
-    <string name="title_second">second</string>
-    <string name="title_third">third</string>
     <string name="title_statistic">Статистика</string>
     <string name="title_notes">Записи</string>
     <string name="title_settings">Настройки</string>
+    <string name="version">О версии 1.0</string>
+    <string name="about_version">Что-то</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="zone_1t">I зона («востановительная»)</string>
+    <string name="zone_1">Нет признаков напряжения в работе функциональных систем</string>
+    <string name="zone_2t">II зона («недовосстановления»)</string>
+    <string name="zone_2">Некоторые признаки напряжения</string>
+    <string name="zone_3t">III зона («адаптации» - до начала занятия, «тренировочная» - на момент завершения занятия)</string>
+    <string name="zone_3">Ярко выраженное напряжение</string>
+    <string name="zone_4t"> IV зона («стресса»)</string>
+    <string name="zone_4">Сильное напряжение, постоянное пребывание в данной зоне более 3–4 дней не рекомендуется</string>
+
 </resources>

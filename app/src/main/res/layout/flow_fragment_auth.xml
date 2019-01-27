@@ -6,7 +6,7 @@
     tools:context=".features.auth.AuthFlowFragment">
 
     <FrameLayout
-        android:id="@+id/auth_container_id"
+        android:id="@+id/authContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
