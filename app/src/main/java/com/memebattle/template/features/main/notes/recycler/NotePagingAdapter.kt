@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import com.memebattle.template.R
 import com.memebattle.template.core.domain.model.Note
 import com.memebattle.template.core.domain.util.FormatNote
-import com.memebattle.template.features.main.notes.recycler.NoteViewHolder
 import kotlinx.android.synthetic.main.item_note.view.*
 
 class NotePagingAdapter(diffCallback: DiffUtil.ItemCallback<Note>) : PagedListAdapter<Note, NoteViewHolder>(diffCallback) {

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,7 +28,6 @@ class NotesFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.flow_fragment_main, container, false)
         notesRecycler.layoutManager = LinearLayoutManager(activity)
-        App.instance.daggerComponentHelper.mainComponent!!.inject(this)
         notesFab.setOnClickListener {
             onFABClick()
         }
@@ -47,15 +47,21 @@ class NotesFragment : Fragment() {
             onShowFilterClick()
         }
         viewModel = ViewModelProviders.of(this).get(NotesViewModel::class.java)
+        viewModel.pagedList.observe(this, Observer {
+            setAdapter(it)
+        })
         updateData()
         return v
     }
 
-    fun onFABClick() {
-        //router.pushController(RouterTransaction.with(AddNoteController()))
+    private fun onFABClick() {
+        fragmentManager!!.beginTransaction()
+                .replace(R.id.container, SignUpFragment())
+                .addToBackStack(Screen.SIGN_UP)
+                .commit()
     }
 
-    fun setAdapter(pagedList: PagedList<Note>) {
+    private fun setAdapter(pagedList: PagedList<Note>) {
         val adapter = NotePagingAdapter(NoteDiffUtilCallback())
         adapter.submitList(pagedList)
         notesRecycler.adapter = adapter
@@ -103,28 +109,28 @@ class NotesFragment : Fragment() {
         }
     }
 
-    fun onPeriodAllClick() {
+    private fun onPeriodAllClick() {
         if (periodAll.textSize != 42.0f) {
             currentPeriod = 0
             updateData()
         }
     }
 
-    fun onPeriodYearClick() {
+    private fun onPeriodYearClick() {
         if (periodYear.textSize != 42.0f) {
             currentPeriod = 1
             updateData()
         }
     }
 
-    fun onPeriodMonthClick() {
+    private fun onPeriodMonthClick() {
         if (periodMonth.textSize != 42.0f) {
             currentPeriod = 2
             updateData()
         }
     }
 
-    fun onPeriodWeekClick() {
+    private fun onPeriodWeekClick() {
         if (periodWeek.textSize != 42.0f) {
             currentPeriod = 3
             updateData()
@@ -155,12 +161,11 @@ class NotesFragment : Fragment() {
             viewModel.setRecyclerData(currentPeriod, moment)
     }
 
-    fun onShowFilterClick() {
+    private fun onShowFilterClick() {
         if (filter) {
             notesFilterLayout.visibility = View.GONE
             showFilterImage.setImageResource(R.drawable.ic_arrow_open_filter)
-        }
-        else {
+        } else {
             notesFilterLayout.visibility = View.VISIBLE
             showFilterImage.setImageResource(R.drawable.ic_arrow_filter_close)
         }
