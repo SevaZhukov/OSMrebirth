@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.memebattle.template.features.main.notes.recycler.NotePagingAdapter
@@ -55,10 +56,8 @@ class NotesFragment : Fragment() {
     }
 
     private fun onFABClick() {
-        fragmentManager!!.beginTransaction()
-                .replace(R.id.activityContainer, CreateNoteFragment())
-                .addToBackStack(null)
-                .commit()
+        val navController = Navigation.findNavController(activity!!, R.id.nav_host_global)
+        navController.navigate(R.id.createNoteFragment)
     }
 
     private fun setAdapter(pagedList: PagedList<Note>) {

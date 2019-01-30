@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_action_statistic"
+        android:id="@+id/statisticFragment"
         android:icon="@drawable/ic_statistic"
         android:title="@string/title_statistic" />
     <item
-        android:id="@+id/navigation_action_notes"
+        android:id="@+id/notesFragment"
         android:icon="@drawable/ic_notes"
         android:title="@string/title_notes" />
     <item
-        android:id="@+id/navigation_action_settings"
+        android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_settings"
         android:title="@string/title_settings" />
 </menu>

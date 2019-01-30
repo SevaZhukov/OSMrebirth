@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.memebattle.template.R
 import com.memebattle.template.core.domain.model.Note
 import com.memebattle.template.core.domain.util.FormatNote
+import com.memebattle.template.core.presentation.getFromBundle
 import kotlinx.android.synthetic.main.fragment_result_note.*
 
 class ResultNoteFragment : Fragment() {
@@ -16,6 +17,7 @@ class ResultNoteFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_result_note, container, false)
+        note = getFromBundle("note", Note::class.java) as Note
         val formatNote = FormatNote.format(note)
         zone.text = formatNote.zone
         points.text = note.points.toString()

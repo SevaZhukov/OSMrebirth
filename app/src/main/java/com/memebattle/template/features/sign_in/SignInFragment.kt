@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.memebattle.template.R
 import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 
@@ -28,7 +29,9 @@ class SignInFragment : Fragment() {
 
         }
         v.signInButton.setOnClickListener {
-            viewModel.signIn("")
+            //viewModel.signIn("")
+            val navController = Navigation.findNavController(activity!!, R.id.nav_host_global)
+            navController.navigate(R.id.action_signInFragment_to_mainFlowFragment)
         }
         return v
     }

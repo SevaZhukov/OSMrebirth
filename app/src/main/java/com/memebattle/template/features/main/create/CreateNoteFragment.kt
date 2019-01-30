@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.memebattle.template.R
 import com.memebattle.template.core.domain.model.Note
+import com.memebattle.template.core.presentation.createBundle
 import com.memebattle.template.core.presentation.putObject
 import com.memebattle.template.features.main.result.ResultNoteFragment
 import kotlinx.android.synthetic.main.fragment_create_note.*
@@ -67,10 +69,9 @@ class CreateNoteFragment : Fragment() {
 
     private fun gotoResult(note: Note) {
         val fragment = ResultNoteFragment()
-        fragment.putObject("note", note)
-        fragmentManager!!.beginTransaction()
-                .replace(R.id.activityContainer, fragment)
-                .commit()
+        val args = createBundle("note", note)
+        val navController = Navigation.findNavController(activity!!, R.id.nav_host_global)
+        navController.navigate(R.id.action_createNoteFragment_to_resultNoteFragment, args)
     }
 
     private fun onWatchClick() {

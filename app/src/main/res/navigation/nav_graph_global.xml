@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/signInFragment">
+
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.memebattle.template.features.sign_in.SignInFragment"
+        android:label="SignInFragment" >
+        <action
+            android:id="@+id/action_signInFragment_to_mainFlowFragment"
+            app:clearTask="true"
+            app:destination="@id/mainFlowFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFlowFragment"
+        android:name="com.memebattle.template.features.main.MainFlowFragment"
+        android:label="flow_fragment_main"
+        tools:layout="@layout/flow_fragment_main" />
+    <fragment
+        android:id="@+id/createNoteFragment"
+        android:name="com.memebattle.template.features.main.create.CreateNoteFragment"
+        android:label="CreateNoteFragment" >
+        <action
+            android:id="@+id/action_createNoteFragment_to_resultNoteFragment"
+            app:clearTask="true"
+            app:destination="@id/resultNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultNoteFragment"
+        android:name="com.memebattle.template.features.main.result.ResultNoteFragment"
+        android:label="ResultNoteFragment" />
+</navigation>
