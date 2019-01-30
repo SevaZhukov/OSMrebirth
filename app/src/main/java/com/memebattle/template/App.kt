@@ -1,10 +1,12 @@
 package com.memebattle.template
 
 import android.app.Application
-import com.memebattle.template.core.di.helper.DaggerComponentHelper
+import com.memebattle.template.core.di.core.AppComponent
+import com.memebattle.template.core.di.core.module.AppModule
 
 class App : Application() {
-    lateinit var daggerComponentHelper: DaggerComponentHelper
+
+    lateinit var appComponent: AppComponent
 
     companion object {
         lateinit var instance: App
@@ -13,7 +15,8 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        val url = resources.getString(R.string.url)
-        daggerComponentHelper = DaggerComponentHelper(url)
+        appComponent = DaggerAppComponent.builder()
+                .appModule(AppModule(instance))
+                .build()
     }
 }

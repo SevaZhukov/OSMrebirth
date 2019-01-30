@@ -28,7 +28,7 @@ class NotePositionalDataSource() : PositionalDataSource<Note>() {
     }
 
     init {
-        App.instance.daggerComponentHelper.mainComponent.inject(this)
+        App.instance.appComponent.inject(this)
     }
 
     @Inject

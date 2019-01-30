@@ -2,6 +2,7 @@ package com.memebattle.template.features.main.create
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.memebattle.template.App
 import com.memebattle.template.core.domain.interactor.RoomService
 import com.memebattle.template.core.domain.model.Note
 import com.memebattle.template.core.domain.util.BaseCallback
@@ -13,6 +14,10 @@ class CreateNoteViewModel : ViewModel() {
 
     @Inject
     lateinit var roomService: RoomService
+
+    init {
+        App.instance.appComponent.inject(this)
+    }
 
     fun getResult(pulseSitting: String, pulseStanding: String) {
         val x = 2.27

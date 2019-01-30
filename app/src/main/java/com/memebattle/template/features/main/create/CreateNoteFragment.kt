@@ -9,7 +9,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.memebattle.template.R
 import com.memebattle.template.core.domain.model.Note
-import kotlinx.android.synthetic.main.fragment_create_note.view.*
+import com.memebattle.template.core.presentation.putObject
+import com.memebattle.template.features.main.result.ResultNoteFragment
+import kotlinx.android.synthetic.main.fragment_create_note.*
 import java.util.*
 
 class CreateNoteFragment : Fragment() {
@@ -21,24 +23,24 @@ class CreateNoteFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_create_note, container, false)
-        view.addNote.setOnClickListener {
+        addNote.setOnClickListener {
             onGetResultClick()
         }
-        view.sleepImage.setOnClickListener {
+        sleepImage.setOnClickListener {
             onSleepClick()
         }
-        view.trainImage.setOnClickListener {
+        trainImage.setOnClickListener {
             onTrainClick()
         }
-        view.gotoWatch.setOnClickListener {
+        gotoWatch.setOnClickListener {
             onWatchClick()
         }
         if (afterSleep) {
-            view.sleepImage.setImageResource(R.drawable.ic_alarm_red)
-            view.trainImage.setImageResource(R.drawable.ic_training_grey)
+            sleepImage.setImageResource(R.drawable.ic_alarm_red)
+            trainImage.setImageResource(R.drawable.ic_training_grey)
         } else {
-            view.sleepImage.setImageResource(R.drawable.ic_alarm_grey)
-            view.trainImage.setImageResource(R.drawable.ic_training_red)
+            sleepImage.setImageResource(R.drawable.ic_alarm_grey)
+            trainImage.setImageResource(R.drawable.ic_training_red)
         }
         viewModel = ViewModelProviders.of(this).get(CreateNoteViewModel::class.java)
         viewModel.result.observe(this, Observer {
@@ -51,38 +53,39 @@ class CreateNoteFragment : Fragment() {
     }
 
     private fun onGetResultClick() {
-        pulseSitting = view!!.pulseSittingField.text.toString()
-        pulseStanding = view!!.pulseStandingField.text.toString()
+        pulseSitting = pulseSittingField.text.toString()
+        pulseStanding = pulseStandingField.text.toString()
         viewModel.getResult(pulseSitting, pulseStanding)
 
     }
 
-    fun setRes(points: Double, zone: Int) {
+    private fun setRes(points: Double, zone: Int) {
         val date = Date()
         val note = Note(pulseSitting, pulseStanding, date.time, points, zone, afterSleep)
         viewModel.addNote(note)
     }
 
     private fun gotoResult(note: Note) {
-        //router.replaceTopController(RouterTransaction.with(ResultNoteController(note)))
+        val fragment = ResultNoteFragment()
+        fragment.putObject("note", note)
         fragmentManager!!.beginTransaction()
-                .replace(R.id.activityContainer, ResultNoteFragment())
+                .replace(R.id.activityContainer, fragment)
                 .commit()
     }
 
     private fun onWatchClick() {
-        //router.pushController(RouterTransaction.with(ListController()))
+
     }
 
-    fun onSleepClick() {
+    private fun onSleepClick() {
         afterSleep = true
-        view!!.sleepImage.setImageResource(R.drawable.ic_alarm_red)
-        view!!.trainImage.setImageResource(R.drawable.ic_training_grey)
+        sleepImage.setImageResource(R.drawable.ic_alarm_red)
+        trainImage.setImageResource(R.drawable.ic_training_grey)
     }
 
-    fun onTrainClick() {
+    private fun onTrainClick() {
         afterSleep = false
-        view!!.sleepImage.setImageResource(R.drawable.ic_alarm_grey)
-        view!!.trainImage.setImageResource(R.drawable.ic_training_red)
+        sleepImage.setImageResource(R.drawable.ic_alarm_grey)
+        trainImage.setImageResource(R.drawable.ic_training_red)
     }
 }

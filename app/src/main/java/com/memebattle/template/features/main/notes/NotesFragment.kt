@@ -11,9 +11,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.memebattle.template.features.main.notes.recycler.NotePagingAdapter
-import com.memebattle.template.App
 import com.memebattle.template.R
 import com.memebattle.template.core.domain.model.Note
+import com.memebattle.template.features.main.create.CreateNoteFragment
 import com.memebattle.template.features.main.notes.paging.NoteDiffUtilCallback
 import kotlinx.android.synthetic.main.fragment_notes.*
 
@@ -56,8 +56,8 @@ class NotesFragment : Fragment() {
 
     private fun onFABClick() {
         fragmentManager!!.beginTransaction()
-                .replace(R.id.container, SignUpFragment())
-                .addToBackStack(Screen.SIGN_UP)
+                .replace(R.id.activityContainer, CreateNoteFragment())
+                .addToBackStack(null)
                 .commit()
     }
 

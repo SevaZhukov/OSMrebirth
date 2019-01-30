@@ -67,4 +67,7 @@ dependencies {
 
     //paging
     implementation 'android.arch.paging:runtime:1.0.1'
+
+    //statistic graphs
+    implementation 'com.github.blackfizz:eazegraph:1.2.2@aar'
 }
