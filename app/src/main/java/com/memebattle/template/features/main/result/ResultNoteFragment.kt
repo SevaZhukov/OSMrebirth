@@ -17,6 +17,11 @@ class ResultNoteFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_result_note, container, false)
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         note = getFromBundle("note", Note::class.java) as Note
         val formatNote = FormatNote.format(note)
         zone.text = formatNote.zone
@@ -46,6 +51,5 @@ class ResultNoteFragment : Fragment() {
         pulseSitting.text = note.pulseSitting
         pulseStanding.text = note.pulseStanding
         moment.setImageResource(formatNote.moment)
-        return view
     }
 }

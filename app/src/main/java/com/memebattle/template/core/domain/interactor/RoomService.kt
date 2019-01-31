@@ -4,10 +4,11 @@ import androidx.paging.PositionalDataSource
 import com.memebattle.template.core.data.AppDatabase
 import com.memebattle.template.core.domain.model.Note
 import com.memebattle.template.core.domain.util.BaseCallback
-import io.reactivex.Observable
-import io.reactivex.ObservableOnSubscribe
+import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.observers.DisposableSingleObserver
+
 
 class RoomService(val db: AppDatabase) {
 
@@ -44,12 +45,13 @@ class RoomService(val db: AppDatabase) {
     fun addNote(note: Note, callback: BaseCallback<String>) {
         Observable.create(ObservableOnSubscribe<Any> {
             dao.insertNote(note)
-            it.onComplete()
+            it.onNext(note)
         })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    callback.onSuccess("") }
+                    callback.onSuccess("")
+                }
     }
 
     fun deleteAll(callback: BaseCallback<String>) {

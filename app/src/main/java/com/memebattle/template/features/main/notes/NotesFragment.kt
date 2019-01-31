@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.memebattle.template.features.main.notes.recycler.NotePagingAdapter
 import com.memebattle.template.R
 import com.memebattle.template.core.domain.model.Note
-import com.memebattle.template.features.main.create.CreateNoteFragment
 import com.memebattle.template.features.main.notes.paging.NoteDiffUtilCallback
 import kotlinx.android.synthetic.main.fragment_notes.*
 
@@ -27,7 +26,12 @@ class NotesFragment : Fragment() {
     private lateinit var viewModel: NotesViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.flow_fragment_main, container, false)
+        val v = inflater.inflate(R.layout.fragment_notes, container, false)
+        return v
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         notesRecycler.layoutManager = LinearLayoutManager(activity)
         notesFab.setOnClickListener {
             onFABClick()
@@ -47,12 +51,20 @@ class NotesFragment : Fragment() {
         showFilterButton.setOnClickListener {
             onShowFilterClick()
         }
+        momentAll.setOnClickListener {
+            onAllClick()
+        }
+        momentSleep.setOnClickListener {
+            onSleepClick()
+        }
+        momentTrain.setOnClickListener {
+            onTrainClick()
+        }
         viewModel = ViewModelProviders.of(this).get(NotesViewModel::class.java)
         viewModel.pagedList.observe(this, Observer {
             setAdapter(it)
         })
         updateData()
-        return v
     }
 
     private fun onFABClick() {

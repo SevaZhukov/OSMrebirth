@@ -7,11 +7,10 @@
 
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.memebattle.template.features.sign_in.SignInFragment"
+        android:name="com.memebattle.template.features.auth.SignInFragment"
         android:label="SignInFragment" >
         <action
             android:id="@+id/action_signInFragment_to_mainFlowFragment"
-            app:clearTask="true"
             app:destination="@id/mainFlowFragment" />
     </fragment>
     <fragment
@@ -25,8 +24,9 @@
         android:label="CreateNoteFragment" >
         <action
             android:id="@+id/action_createNoteFragment_to_resultNoteFragment"
-            app:clearTask="true"
-            app:destination="@id/resultNoteFragment" />
+            app:destination="@id/resultNoteFragment"
+            app:popUpTo="@+id/mainFlowFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/resultNoteFragment"

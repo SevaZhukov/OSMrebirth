@@ -2,6 +2,7 @@ package com.memebattle.template.features.main.create
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.memebattle.goldextensions.log
 import com.memebattle.template.App
 import com.memebattle.template.core.domain.interactor.RoomService
 import com.memebattle.template.core.domain.model.Note
@@ -46,12 +47,15 @@ class CreateNoteViewModel : ViewModel() {
     fun addNote(note: Note) {
         roomService.addNote(note, object : BaseCallback<String> {
             override fun onSuccess(data: String?) {
+                log("$data")
                 successAddingNote.value = note
             }
 
             override fun onError(t: Throwable) {
+                log("${t.message}")
             }
 
         })
+        //successAddingNote.value = note
     }
 }

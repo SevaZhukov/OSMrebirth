@@ -3,6 +3,7 @@ package com.memebattle.template.features.main.statistics
 import android.graphics.Color
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.memebattle.goldextensions.log
 import com.memebattle.template.App
 import com.memebattle.template.core.domain.interactor.RoomService
 import com.memebattle.template.core.domain.model.Note
@@ -24,6 +25,7 @@ class StatisticViewModel : ViewModel() {
     val lineSeriesLiveData = MutableLiveData<ValueLineSeries>()
 
     fun getDataForChart(period: Int, moment: Int) {
+        log("get data")
         val today = Date().time
         val beginPeriod = today - getLongInterval(period)
         val withPeriod = period != 0
@@ -48,6 +50,7 @@ class StatisticViewModel : ViewModel() {
 
     private var callback = object : RoomService.NotesCallback {
         override fun onSuccess(notes: List<Note>) {
+            log("notes $notes")
             val lineSeries = ValueLineSeries()
             val zones = Array(4) { 0 }
             lineSeries.color = Color.parseColor("#d7443c")
@@ -80,7 +83,7 @@ class StatisticViewModel : ViewModel() {
         }
 
         override fun onError(e: Throwable) {
-
+            log("error ${e.message}")
         }
 
     }

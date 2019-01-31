@@ -1,11 +1,7 @@
-package com.memebattle.template.features.sign_in
+package com.memebattle.template.features.auth
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.memebattle.goldextensions.log
-import com.memebattle.template.App
-import com.memebattle.template.core.domain.util.BaseCallback
-import javax.inject.Inject
 
 class SignInViewModel : ViewModel() {
 

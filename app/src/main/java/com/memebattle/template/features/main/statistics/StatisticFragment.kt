@@ -21,7 +21,12 @@ class StatisticFragment : Fragment() {
     private lateinit var viewModel: StatisticViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.flow_fragment_main, container, false)
+        val v = inflater.inflate(R.layout.fragment_statistic, container, false)
+        return v
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(StatisticViewModel::class.java)
         viewModel.lineSeriesLiveData.observe(this, Observer {
             setLineChartData(it)
@@ -29,7 +34,7 @@ class StatisticFragment : Fragment() {
         viewModel.pieSeriesLiveData.observe(this, Observer {
             setPieChart(it)
         })
-        return v
+        updateData()
     }
 
     private fun setLineChartData(series: ValueLineSeries) {

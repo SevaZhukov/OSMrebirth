@@ -14,9 +14,12 @@ class MainFlowFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.flow_fragment_main, container, false)
+        return inflater.inflate(R.layout.flow_fragment_main, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val navController = Navigation.findNavController(activity!!, R.id.nav_host_main)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
-        return v
     }
 }

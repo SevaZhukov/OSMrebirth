@@ -70,6 +70,7 @@ dependencies {
 
     //statistic graphs
     implementation 'com.github.blackfizz:eazegraph:1.2.2@aar'
+    implementation 'com.nineoldandroids:library:2.4.0'
 
     //navigation
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha11'

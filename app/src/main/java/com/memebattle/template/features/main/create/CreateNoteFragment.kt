@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import com.memebattle.goldextensions.log
 import com.memebattle.template.R
 import com.memebattle.template.core.domain.model.Note
 import com.memebattle.template.core.presentation.createBundle
@@ -25,6 +26,20 @@ class CreateNoteFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_create_note, container, false)
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProviders.of(this).get(CreateNoteViewModel::class.java)
+        viewModel.result.observe(this, Observer {
+            log("result")
+            setRes(it.first, it.second)
+        })
+        viewModel.successAddingNote.observe(this, Observer {
+            log("successAddingNote")
+            gotoResult(it)
+        })
         addNote.setOnClickListener {
             onGetResultClick()
         }
@@ -44,21 +59,12 @@ class CreateNoteFragment : Fragment() {
             sleepImage.setImageResource(R.drawable.ic_alarm_grey)
             trainImage.setImageResource(R.drawable.ic_training_red)
         }
-        viewModel = ViewModelProviders.of(this).get(CreateNoteViewModel::class.java)
-        viewModel.result.observe(this, Observer {
-            setRes(it.first, it.second)
-        })
-        viewModel.successAddingNote.observe(this, Observer {
-            gotoResult(it)
-        })
-        return view
     }
 
     private fun onGetResultClick() {
         pulseSitting = pulseSittingField.text.toString()
         pulseStanding = pulseStandingField.text.toString()
         viewModel.getResult(pulseSitting, pulseStanding)
-
     }
 
     private fun setRes(points: Double, zone: Int) {
@@ -68,7 +74,6 @@ class CreateNoteFragment : Fragment() {
     }
 
     private fun gotoResult(note: Note) {
-        val fragment = ResultNoteFragment()
         val args = createBundle("note", note)
         val navController = Navigation.findNavController(activity!!, R.id.nav_host_global)
         navController.navigate(R.id.action_createNoteFragment_to_resultNoteFragment, args)

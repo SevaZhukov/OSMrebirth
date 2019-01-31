@@ -2,6 +2,7 @@ package com.memebattle.template
 
 import android.app.Application
 import com.memebattle.template.core.di.core.AppComponent
+import com.memebattle.template.core.di.core.DaggerAppComponent
 import com.memebattle.template.core.di.core.module.AppModule
 
 class App : Application() {
