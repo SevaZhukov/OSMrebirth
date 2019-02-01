@@ -4,14 +4,14 @@
     app:startDestination="@id/notesFragment">
     <fragment
         android:id="@+id/notesFragment"
-        android:name="com.memebattle.template.features.main.notes.NotesFragment"
+        android:name="com.bignerdranch.android.osm.features.main.notes.NotesFragment"
         android:label="NotesFragment" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.memebattle.template.features.main.settings.SettingsFragment"
+        android:name="com.bignerdranch.android.osm.features.main.settings.SettingsFragment"
         android:label="SettingsFragment" />
     <fragment
         android:id="@+id/statisticFragment"
-        android:name="com.memebattle.template.features.main.statistics.StatisticFragment"
+        android:name="com.bignerdranch.android.osm.features.main.statistics.StatisticFragment"
         android:label="StatisticFragment" />
 </navigation>

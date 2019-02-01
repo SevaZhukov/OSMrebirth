@@ -6,10 +6,12 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.memebattle.template"
+        applicationId "com.bignerdranch.android.osm"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -25,6 +27,10 @@ android {
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 
@@ -75,4 +81,9 @@ dependencies {
     //navigation
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha11'
     implementation 'android.arch.navigation:navigation-ui:1.0.0-alpha11'
+
+    //fire
+    implementation 'com.kelvinapps:rxfirebase:0.0.15'
+    implementation 'com.google.firebase:firebase-auth:16.1.0'
+    implementation 'com.google.firebase:firebase-storage:16.0.5'
 }

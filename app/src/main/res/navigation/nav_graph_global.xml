@@ -3,24 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/signInFragment">
+    app:startDestination="@id/mainFlowFragment">
 
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.memebattle.template.features.auth.AuthFragment"
+        android:name="com.bignerdranch.android.osm.features.auth.AuthFragment"
         android:label="SignInFragment" >
         <action
-            android:id="@+id/action_signInFragment_to_mainFlowFragment"
-            app:destination="@id/mainFlowFragment" />
+            android:id="@+id/action_signInFragment_to_cloudFragment"
+            app:destination="@id/cloudFragment"
+            app:popUpTo="@+id/mainFlowFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFlowFragment"
-        android:name="com.memebattle.template.features.main.MainFlowFragment"
+        android:name="com.bignerdranch.android.osm.features.main.MainFlowFragment"
         android:label="flow_fragment_main"
         tools:layout="@layout/flow_fragment_main" />
     <fragment
         android:id="@+id/createNoteFragment"
-        android:name="com.memebattle.template.features.main.create.CreateNoteFragment"
+        android:name="com.bignerdranch.android.osm.features.main.create.CreateNoteFragment"
         android:label="CreateNoteFragment" >
         <action
             android:id="@+id/action_createNoteFragment_to_resultNoteFragment"
@@ -30,6 +31,10 @@
     </fragment>
     <fragment
         android:id="@+id/resultNoteFragment"
-        android:name="com.memebattle.template.features.main.result.ResultNoteFragment"
+        android:name="com.bignerdranch.android.osm.features.main.result.ResultNoteFragment"
         android:label="ResultNoteFragment" />
+    <fragment
+        android:id="@+id/cloudFragment"
+        android:name="com.bignerdranch.android.osm.features.cloud.CloudFragment"
+        android:label="CloudFragment" />
 </navigation>
