@@ -8,10 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.memebattle.goldextensions.snack
 import com.memebattle.template.R
+import com.memebattle.template.features.main.statistics.StatisticViewModel
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : Fragment() {
+
+    lateinit var viewModel: SettingsViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
@@ -32,6 +38,13 @@ class SettingsFragment : Fragment() {
         deleteAll.setOnClickListener {
             onDeleteAllClick()
         }
+        viewModel = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
+        viewModel.deleteStatus.observe(this, Observer {
+            if(it == "success")
+                snack("Записи успешно удалены")
+            else
+                snack("Не удалось удалить записи")
+        })
     }
 
     private fun onDeleteAllClick() {
@@ -39,7 +52,7 @@ class SettingsFragment : Fragment() {
                 .setTitle("Удаление всех записей")
                 .setMessage("Вы действительно удалить все записи?")
                 .setPositiveButton("Да") { dialog, _ ->
-                    //presenter.deleteAll()
+                    viewModel.deleteAllNotes()
                     dialog.cancel()
                 }
                 .setNegativeButton("Нет") { dialog, _ -> dialog.cancel() }

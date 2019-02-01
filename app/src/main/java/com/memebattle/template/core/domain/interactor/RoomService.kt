@@ -57,7 +57,7 @@ class RoomService(val db: AppDatabase) {
     fun deleteAll(callback: BaseCallback<String>) {
         Observable.create(ObservableOnSubscribe<Any> {
             dao.deleteAllNotes()
-            it.onComplete()
+            it.onNext("")
         })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

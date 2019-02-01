@@ -11,9 +11,9 @@ import androidx.navigation.Navigation
 import com.memebattle.template.R
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 
-class SignInFragment : Fragment() {
+class AuthFragment : Fragment() {
 
-    lateinit var viewModel: SignInViewModel
+    lateinit var viewModel: AuthViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -23,7 +23,7 @@ class SignInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SignInViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(AuthViewModel::class.java)
         viewModel.user.observe(this, Observer {
 
         })

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.memebattle.template.features.auth.SignInFragment"
+        android:name="com.memebattle.template.features.auth.AuthFragment"
         android:label="SignInFragment" >
         <action
             android:id="@+id/action_signInFragment_to_mainFlowFragment"
