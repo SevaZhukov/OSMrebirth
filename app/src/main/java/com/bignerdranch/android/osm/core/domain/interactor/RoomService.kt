@@ -64,6 +64,17 @@ class RoomService(val db: AppDatabase) {
                     callback.onSuccess("") }
     }
 
+    fun deleteNote(note: Note, callback: BaseCallback<String>) {
+        Observable.create(ObservableOnSubscribe<Any> {
+            dao.deleteNote(note.id)
+            it.onNext("")
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    callback.onSuccess("") }
+    }
+
     fun getRange(params: PositionalDataSource.LoadRangeParams, callback: PositionalDataSource.LoadRangeCallback<Note>) {
         dao.getPage(params.startPosition, params.loadSize)
                 .subscribeOn(Schedulers.io())

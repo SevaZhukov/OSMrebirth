@@ -21,8 +21,7 @@ class StatisticFragment : Fragment() {
     private lateinit var viewModel: StatisticViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_statistic, container, false)
-        return v
+        return inflater.inflate(R.layout.fragment_statistic, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

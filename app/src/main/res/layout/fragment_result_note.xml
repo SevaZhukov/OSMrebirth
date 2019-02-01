@@ -340,13 +340,6 @@
                 app:srcCompat="@drawable/ic_delete" />
 
             <ImageView
-                android:id="@+id/editButton"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/ic_edit" />
-
-            <ImageView
                 android:id="@+id/shareButton"
                 android:layout_width="35dp"
                 android:layout_height="35dp"

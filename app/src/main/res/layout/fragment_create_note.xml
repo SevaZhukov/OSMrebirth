@@ -20,13 +20,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/add_note_timer"
+        <Chronometer
+            android:id="@+id/timerText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="0:59"
-            android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@color/main_red"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,10 +42,10 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_note_timer">
+            app:layout_constraintTop_toBottomOf="@+id/timerText">
 
             <ImageView
-                android:id="@+id/add_note_timer_pause"
+                android:id="@+id/pauseTimerButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="10dp"
@@ -55,7 +53,7 @@
                 app:srcCompat="@drawable/ic_pause" />
 
             <ImageView
-                android:id="@+id/add_note_timer_start"
+                android:id="@+id/startTimerButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -145,7 +143,7 @@
                     android:layout_marginBottom="1dp"
                     android:ems="10"
                     android:gravity="center"
-                    android:inputType="textPersonName"
+                    android:inputType="phone"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -179,7 +177,7 @@
                     android:layout_marginBottom="1dp"
                     android:ems="10"
                     android:gravity="center"
-                    android:inputType="textPersonName"
+                    android:inputType="textPersonName|phone"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -3,9 +3,9 @@
     package="com.memebattle.template">
 
     <application
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/osm"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/osm"
         android:supportsRtl="true"
         android:name="com.bignerdranch.android.osm.App"
         android:theme="@style/AppTheme">

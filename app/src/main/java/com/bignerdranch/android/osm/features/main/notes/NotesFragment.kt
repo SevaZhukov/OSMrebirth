@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,15 +24,17 @@ class NotesFragment : Fragment() {
     private var currentPeriod = 4
     private var moment = 2
 
+    lateinit var navController: NavController
+
     private lateinit var viewModel: NotesViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_notes, container, false)
-        return v
+        return inflater.inflate(R.layout.fragment_notes, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(activity!!, R.id.nav_host_global)
         notesRecycler.layoutManager = LinearLayoutManager(activity)
         notesFab.setOnClickListener {
             onFABClick()
@@ -68,12 +71,11 @@ class NotesFragment : Fragment() {
     }
 
     private fun onFABClick() {
-        val navController = Navigation.findNavController(activity!!, R.id.nav_host_global)
         navController.navigate(R.id.createNoteFragment)
     }
 
     private fun setAdapter(pagedList: PagedList<Note>) {
-        val adapter = NotePagingAdapter(NoteDiffUtilCallback())
+        val adapter = NotePagingAdapter(NoteDiffUtilCallback(), navController)
         adapter.submitList(pagedList)
         notesRecycler.adapter = adapter
     }
